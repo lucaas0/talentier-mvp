@@ -96,5 +96,6 @@ body {
 }
 
 .bubles-people {
+    width: auto !important;
     margin-top: 10%;
 }

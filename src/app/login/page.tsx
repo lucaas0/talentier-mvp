@@ -115,6 +115,7 @@ const Login = () => {
                 showArrows={false}
                 showIndicators
                 showStatus={false}
+                showThumbs={false}
                 swipeable
                 emulateTouch
             >
