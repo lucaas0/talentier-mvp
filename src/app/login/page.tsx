@@ -32,7 +32,7 @@ const Login = () => {
                     </h2>
                 </div>
                 <button className='btn-create mx-4'>Create account</button>
-                <div className='text-sm mx-4 text-center mb-14'>
+                <div className='text-sm mx-4 text-center mb-4'>
                     Already have an account?{' '}
                     <a className='font-black cursor-pointer'>Login</a>
                 </div>
@@ -67,7 +67,7 @@ const Login = () => {
                     </h2>
                 </div>
                 <button className='btn-create mx-4'>Create account</button>
-                <div className='text-sm mx-4 text-center mb-14'>
+                <div className='text-sm mx-4 text-center mb-4'>
                     Already have an account?{' '}
                     <a className='font-black cursor-pointer'>Login</a>
                 </div>
@@ -102,7 +102,7 @@ const Login = () => {
                     </h2>
                 </div>
                 <button className='btn-create mx-4'>Create account</button>
-                <div className='text-sm mx-4 text-center mb-14'>
+                <div className='text-sm mx-4 text-center mb-4'>
                     Already have an account?{' '}
                     <a className='font-black cursor-pointer'>Login</a>
                 </div>
