@@ -14,7 +14,7 @@ const Login = () => {
                 exit={{ opacity: 1 }}
                 transition={{ type: 'tween', duration: 1 }}
             >
-                <div className='onboarding-top w-full h-2/4'>
+                <div className='onboarding-top w-full h-2/5'>
                     <Image
                         src='/bubles-people-1.png'
                         width={250}
@@ -49,7 +49,7 @@ const Login = () => {
                 exit={{ opacity: 1 }}
                 transition={{ type: 'tween', duration: 1 }}
             >
-                <div className='onboarding-top w-full h-2/4'>
+                <div className='onboarding-top w-full h-2/5'>
                     <Image
                         src='/bubles-people-1.png'
                         width={250}
@@ -84,7 +84,7 @@ const Login = () => {
                 exit={{ opacity: 1 }}
                 transition={{ type: 'tween', duration: 1 }}
             >
-                <div className='bubles w-full h-2/4'>
+                <div className='bubles w-full h-2/5'>
                     <Image
                         src='/bubles.png'
                         width={250}
