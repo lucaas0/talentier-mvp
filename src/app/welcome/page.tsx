@@ -3,8 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import Image from 'next/image';
+import { CreateAccountButton } from '@/components/welcome/CreateBtn';
+import { LoginSection } from '@/components/welcome/LoginSection';
 
-const Login = () => {
+const Welcome = () => {
     const renderSlide1 = () => {
         return (
             <motion.main
@@ -31,11 +33,8 @@ const Login = () => {
                         A platform built for <br /> a new way of finding jobs
                     </h2>
                 </div>
-                <button className='btn-create mx-4'>Create account</button>
-                <div className='text-sm mx-4 text-center mb-4'>
-                    Already have an account?{' '}
-                    <a className='font-black cursor-pointer'>Login</a>
-                </div>
+                <CreateAccountButton />
+                <LoginSection />
             </motion.main>
         );
     };
@@ -66,11 +65,8 @@ const Login = () => {
                         A platform built with <br /> the recruiters in mind
                     </h2>
                 </div>
-                <button className='btn-create mx-4'>Create account</button>
-                <div className='text-sm mx-4 text-center mb-4'>
-                    Already have an account?{' '}
-                    <a className='font-black cursor-pointer'>Login</a>
-                </div>
+                <CreateAccountButton />
+                <LoginSection />
             </motion.main>
         );
     };
@@ -101,11 +97,8 @@ const Login = () => {
                         process
                     </h2>
                 </div>
-                <button className='btn-create mx-4'>Create account</button>
-                <div className='text-sm mx-4 text-center mb-4'>
-                    Already have an account?{' '}
-                    <a className='font-black cursor-pointer'>Login</a>
-                </div>
+                <CreateAccountButton />
+                <LoginSection />
             </motion.main>
         );
     };
@@ -127,4 +120,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Welcome;

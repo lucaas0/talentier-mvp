@@ -10,8 +10,8 @@ const Splash = () => {
     useEffect(() => {
         const handleReRoute = () => {
             setTimeout(() => {
-                router.push('/login');
-            }, 3000);
+                router.push('/welcome');
+            }, 2000);
         };
 
         handleReRoute();
@@ -24,7 +24,7 @@ const Splash = () => {
                 initial={{ opacity: 1 }}
                 animate={{ opacity: 0 }}
                 exit={{ opacity: 0 }}
-                transition={{ type: 'tween', duration: 3 }}
+                transition={{ type: 'tween', duration: 2 }}
             >
                 <div className='onboarding-top w-full h-2/5' />
                 <div className='w-full flex-1 flex items-center justify-center'>

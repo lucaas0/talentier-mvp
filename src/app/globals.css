@@ -103,3 +103,20 @@ body {
     width: 70% !important;
     margin-top: 5%;
 }
+
+.button-back {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+}
+
+.looking-container {
+    border-radius: 13px;
+    border: 1px solid var(--neutral-100, #f2f4f7);
+    background: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+}
