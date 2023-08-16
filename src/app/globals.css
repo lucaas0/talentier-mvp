@@ -3,11 +3,15 @@
 @tailwind utilities;
 
 body {
+    position: fixed;
     display: flex;
     justify-content: center;
     color: rgb(var(--foreground-rgb));
     background: #fff;
-    height: 100vh;
+    height: 100%;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
     overflow-y: hidden;
 }
 
