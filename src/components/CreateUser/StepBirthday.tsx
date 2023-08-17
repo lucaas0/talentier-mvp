@@ -44,6 +44,9 @@ const CreateUserStepBirthday = ({
                     className='color-667085 text-sm w-full bg-F2F4F7 rounded-lg p-3 outline-none'
                     dateFormat='dd/MM/yyyy'
                     placeholderText='dd/mm/yyyy'
+                    showMonthDropdown
+                    showYearDropdown
+                    dropdownMode='select'
                 />
             </section>
             <NextButton
