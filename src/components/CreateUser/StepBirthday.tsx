@@ -31,7 +31,7 @@ const CreateUserStepBirthday = ({
                     We need to know if you are legally able to work
                 </h2>
             </section>
-            <section className='flex flex-col gap-2'>
+            <section className='flex flex-col gap-2 w-full'>
                 <CustomLabel text='Birthday Date' />
                 <CustomInput
                     type='date'
