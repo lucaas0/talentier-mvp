@@ -4,10 +4,15 @@ import CustomInput from '../shared/Input';
 import CustomLabel from '../shared/Label';
 import { NextButton } from '../shared/NextButton';
 import { CreateFormSteps } from '@/utils/constants';
+import DatePicker from 'react-datepicker';
 
+import 'react-datepicker/dist/react-datepicker.css';
+
+// CSS Modules, react-datepicker-cssmodules.css
+// import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 interface CreateUserBirthdayProps {
-    birthday: string;
-    onBirthdayChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    birthday: Date;
+    onBirthdayChange: (birthdate: Date) => void;
     onStepChange: (nextStep: CreateFormSteps) => void;
 }
 
@@ -33,17 +38,16 @@ const CreateUserStepBirthday = ({
             </section>
             <section className='flex flex-col gap-2 w-full'>
                 <CustomLabel text='Birthday Date' />
-                <CustomInput
-                    type='date'
-                    placeholder='dd/mm/yyyy'
-                    value={birthday}
-                    onInputChange={onBirthdayChange}
-                    name='birthday'
-                    hasError={false}
+                <DatePicker
+                    selected={birthday}
+                    onChange={(date: Date) => onBirthdayChange(date)}
+                    className='color-667085 text-sm w-full bg-F2F4F7 rounded-lg p-3 outline-none'
+                    dateFormat='dd/MM/yyyy'
+                    placeholderText='dd/mm/yyyy'
                 />
             </section>
             <NextButton
-                disabled={birthday.length < 3}
+                disabled={!birthday}
                 text='Next'
                 callback={() => onStepChange(CreateFormSteps.Birthday)}
             />

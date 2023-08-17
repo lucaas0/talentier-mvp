@@ -18,7 +18,7 @@ interface User {
     email: string;
     password: string;
     name: string;
-    birthday: string;
+    birthday: Date;
 }
 
 const CreateUserAccount = () => {
@@ -26,7 +26,7 @@ const CreateUserAccount = () => {
         email: '',
         password: '',
         name: '',
-        birthday: '',
+        birthday: new Date(),
     });
     const [activeStep, setActiveStep] = useState<CreateFormSteps>(
         CreateFormSteps.Email
@@ -45,6 +45,13 @@ const CreateUserAccount = () => {
 
     const handleStepChange = (newStep: CreateFormSteps) => {
         setActiveStep(newStep);
+    };
+
+    const handleBirthdateChange = (newBirthDate: Date) => {
+        setUserData({
+            ...userData,
+            birthday: newBirthDate,
+        });
     };
 
     console.log(userData);
@@ -82,7 +89,7 @@ const CreateUserAccount = () => {
                 {activeStep === CreateFormSteps.Birthday && (
                     <CreateUserStepBirthday
                         birthday={userData.birthday}
-                        onBirthdayChange={handleFieldChange}
+                        onBirthdayChange={handleBirthdateChange}
                         onStepChange={handleStepChange}
                     />
                 )}
