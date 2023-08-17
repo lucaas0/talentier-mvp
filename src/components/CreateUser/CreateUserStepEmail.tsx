@@ -32,7 +32,7 @@ const CreateUserStepEmail = ({
                     Enter Email
                 </h1>
                 <h2 className='color-667085 text-sm font-medium'>
-                    Don't worry you can always edit this later
+                    {`Don't worry you can always edit this later`}
                 </h2>
             </section>
             <section className='flex flex-col gap-2'>

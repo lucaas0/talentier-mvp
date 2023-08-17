@@ -29,8 +29,8 @@ const CreateUserStepPassword = ({
                     Create a password
                 </h1>
                 <h2 className='color-667085 text-sm font-medium'>
-                    We can remember the password, so you <br /> won't need to
-                    enter it on your iCloud devices.
+                    We can remember the password, so you <br /> {`won't`} need
+                    to enter it on your iCloud devices.
                 </h2>
             </section>
             <section className='flex flex-col gap-2'>
