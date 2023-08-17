@@ -1,0 +1,16 @@
+export enum CreateFormSteps {
+    Email = 'Email',
+    Password = 'Password',
+    Name = 'Name',
+    Birthday = 'Birthday',
+    Experience = 'Experience',
+    ViewExperiences = 'ViewExperiences',
+    Education = 'Education',
+    ViewEducations = 'ViewEducations',
+    Skills = 'Skilss',
+    JobPreferences = 'JobPreferences',
+    Perks = 'Perks',
+    Notifications = 'Notifications',
+    ProfilePhoto = 'ProfilePhoto',
+    Done = 'Done',
+}

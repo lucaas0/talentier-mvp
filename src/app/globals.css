@@ -53,6 +53,26 @@ body {
     color: #475467;
 }
 
+.color-7B61FF {
+    color: #7b61ff;
+}
+
+.color-667085 {
+    color: #667085;
+}
+
+.color-F2F4F7 {
+    color: #f2f4f7;
+}
+
+.bg-101828 {
+    background-color: #101828;
+}
+
+.bg-F2F4F7 {
+    background-color: #f2f4f7;
+}
+
 .btn-create {
     color: #fff;
     background-color: #101828;
@@ -64,9 +84,9 @@ body {
     height: calc(100% - 40px);
 }
 
-/* .carousel {
-    width: 79% !important;
-} */
+.input-error {
+    border: 1px solid #dc2626;
+}
 
 .carousel-root {
     width: 100%;

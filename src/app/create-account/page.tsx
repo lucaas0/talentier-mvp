@@ -2,6 +2,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { LoginSection } from '@/components/welcome/LoginSection';
 import { useRouter } from 'next/navigation';
+import { BackBtn } from '@/components/shared/BackButton';
 
 const Welcome = () => {
     const router = useRouter();
@@ -9,6 +10,15 @@ const Welcome = () => {
     const onBackClick = () => {
         router.push('/welcome');
     };
+
+    const onRegisterUserClick = () => {
+        router.push('/register-user');
+    };
+
+    const onRegisterOrgClick = () => {
+        router.push('/register-org');
+    };
+
     return (
         <AnimatePresence>
             <motion.main
@@ -19,30 +29,17 @@ const Welcome = () => {
                 transition={{ type: 'tween', duration: 1 }}
             >
                 <section className='flex flex-col gap-4'>
-                    <button className='button-back my-4' onClick={onBackClick}>
-                        <svg
-                            width='9'
-                            height='14'
-                            viewBox='0 0 9 14'
-                            fill='none'
-                            xmlns='http://www.w3.org/2000/svg'
-                        >
-                            <path
-                                d='M7.5 13.25L1.25 7L7.5 0.75'
-                                stroke='black'
-                                stroke-width='1.5'
-                                stroke-linecap='round'
-                                stroke-linejoin='round'
-                            />
-                        </svg>
-                    </button>
+                    <BackBtn callback={onBackClick} />
                     <h1 className='text-2xl font-black text-gray-800'>
                         Create account
                     </h1>
                     <h2 className='text-base text-gray-500'>
                         A platform built for <br /> a new way of finding jobs
                     </h2>
-                    <div className='looking-container flex flex-row justify-between items-center p-3 cursor-pointer'>
+                    <div
+                        className='looking-container flex flex-row justify-between items-center p-3 cursor-pointer'
+                        onClick={onRegisterUserClick}
+                    >
                         <div className='flex flex-row gap-4'>
                             <div className=' bg-gray-800 rounded-lg p-3'>
                                 <svg
@@ -52,7 +49,7 @@ const Welcome = () => {
                                     fill='none'
                                     xmlns='http://www.w3.org/2000/svg'
                                 >
-                                    <g clip-path='url(#clip0_271_2710)'>
+                                    <g clipPath='url(#clip0_271_2710)'>
                                         <path
                                             d='M10 12.5C12.7614 12.5 15 10.2614 15 7.5C15 4.73858 12.7614 2.5 10 2.5C7.23858 2.5 5 4.73858 5 7.5C5 10.2614 7.23858 12.5 10 12.5Z'
                                             stroke='white'
@@ -106,7 +103,10 @@ const Welcome = () => {
                             </svg>
                         </div>
                     </div>
-                    <div className='looking-container flex flex-row justify-between items-center p-3 cursor-pointer'>
+                    <div
+                        className='looking-container flex flex-row justify-between items-center p-3 cursor-pointer'
+                        onClick={onRegisterOrgClick}
+                    >
                         <div className='flex flex-row gap-4'>
                             <div className=' bg-indigo-600 rounded-lg p-3'>
                                 <svg
@@ -116,7 +116,7 @@ const Welcome = () => {
                                     fill='none'
                                     xmlns='http://www.w3.org/2000/svg'
                                 >
-                                    <g clip-path='url(#clip0_271_2719)'>
+                                    <g clipPath='url(#clip0_271_2719)'>
                                         <path
                                             d='M10.625 16.8751V2.50011C10.6249 2.387 10.5942 2.27603 10.536 2.17902C10.4778 2.08202 10.3944 2.00263 10.2946 1.9493C10.1949 1.89598 10.0825 1.87072 9.96956 1.87623C9.85658 1.88174 9.74722 1.9178 9.65313 1.98058L3.40313 6.14699C3.3174 6.20418 3.24715 6.28169 3.19862 6.37261C3.1501 6.46352 3.12481 6.56503 3.125 6.66808V16.8751'
                                             stroke='white'
