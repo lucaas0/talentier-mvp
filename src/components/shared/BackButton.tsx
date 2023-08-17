@@ -11,9 +11,9 @@ const BackButtonFn = ({ callback }: { callback: () => void }) => {
                 <path
                     d='M7.5 13.25L1.25 7L7.5 0.75'
                     stroke='black'
-                    stroke-width='1.5'
-                    stroke-linecap='round'
-                    stroke-linejoin='round'
+                    strokeWidth='1.5'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
                 />
             </svg>
         </button>
