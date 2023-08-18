@@ -1,25 +1,14 @@
 'use client';
 import React, { useState } from 'react';
-import { BackBtn } from '@/components/shared/BackButton';
-import CustomInput from '@/components/shared/Input';
-import CustomLabel from '@/components/shared/Label';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/navigation';
-import { NextButton } from '@/components/shared/NextButton';
-import { isValidEmail } from '@/utils/validations';
-import CreateFormHeader from '@/components/shared/CreateFormHeader';
 import CreateUserStepEmail from '@/components/CreateUser/CreateUserStepEmail';
 import { CreateFormSteps } from '@/utils/constants';
 import CreateUserStepPassword from '@/components/CreateUser/CreateUserStepPassword';
 import CreateUserStepName from '@/components/CreateUser/StepName';
 import CreateUserStepBirthday from '@/components/CreateUser/StepBirthday';
-
-interface User {
-    email: string;
-    password: string;
-    name: string;
-    birthday: Date;
-}
+import { User, UserExperience } from '@/utils/utils';
+import CreateUserStepExperience from '@/components/CreateUser/Experience';
+import CreateUserStepViewExperiences from '@/components/CreateUser/ViewExperiences';
 
 const CreateUserAccount = () => {
     const [userData, setUserData] = useState<User>({
@@ -27,6 +16,7 @@ const CreateUserAccount = () => {
         password: '',
         name: '',
         birthday: new Date(),
+        experiences: [],
     });
     const [activeStep, setActiveStep] = useState<CreateFormSteps>(
         CreateFormSteps.Email
@@ -52,6 +42,14 @@ const CreateUserAccount = () => {
             ...userData,
             birthday: newBirthDate,
         });
+    };
+
+    const handleExperienceChange = (experience: UserExperience) => {
+        const copy = { ...userData };
+
+        copy.experiences = [...userData.experiences, experience];
+
+        setUserData({ ...copy });
     };
 
     console.log(userData);
@@ -90,6 +88,19 @@ const CreateUserAccount = () => {
                     <CreateUserStepBirthday
                         birthday={userData.birthday}
                         onBirthdayChange={handleBirthdateChange}
+                        onStepChange={handleStepChange}
+                    />
+                )}
+                {activeStep === CreateFormSteps.Experience && (
+                    <CreateUserStepExperience
+                        userName={userData.name}
+                        onExperienceChange={handleExperienceChange}
+                        onStepChange={handleStepChange}
+                    />
+                )}
+                {activeStep === CreateFormSteps.ViewExperiences && (
+                    <CreateUserStepViewExperiences
+                        experiences={userData.experiences}
                         onStepChange={handleStepChange}
                     />
                 )}

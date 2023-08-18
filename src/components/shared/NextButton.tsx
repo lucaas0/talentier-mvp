@@ -7,13 +7,15 @@ interface NextButtonProps
 
 export const NextButton = ({ text, disabled, callback }: NextButtonProps) => {
     return (
-        <button
-            className={`w-full p-3 my-12 rounded-full bg-101828 text-sm text-white ${
-                disabled ? 'opacity-50' : 'opacity-100'
-            }`}
-            onClick={(e) => callback(e)}
-        >
-            {text}
-        </button>
+        <section className='flex-1 flex items-end'>
+            <button
+                className={`w-full p-3 my-12 rounded-full bg-101828 text-sm text-white ${
+                    disabled ? 'opacity-50' : 'opacity-100'
+                }`}
+                onClick={(e) => callback(e)}
+            >
+                {text}
+            </button>
+        </section>
     );
 };

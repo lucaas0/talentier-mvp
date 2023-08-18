@@ -73,6 +73,10 @@ body {
     background-color: #f2f4f7;
 }
 
+.bg-7b61ff {
+    background-color: #7b61ff;
+}
+
 .btn-create {
     color: #fff;
     background-color: #101828;
@@ -139,4 +143,19 @@ body {
     border: 1px solid var(--neutral-100, #f2f4f7);
     background: #fff;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.1);
+}
+
+.scrollable-container {
+    overflow-y: auto;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollable-container::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollable-container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
 }

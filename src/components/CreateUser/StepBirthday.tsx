@@ -52,7 +52,7 @@ const CreateUserStepBirthday = ({
             <NextButton
                 disabled={!birthday}
                 text='Next'
-                callback={() => onStepChange(CreateFormSteps.Birthday)}
+                callback={() => onStepChange(CreateFormSteps.Experience)}
             />
         </React.Fragment>
     );
