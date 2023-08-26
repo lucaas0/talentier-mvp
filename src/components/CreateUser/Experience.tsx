@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import CreateFormHeader from '../shared/CreateFormHeader';
 import CustomInput from '../shared/Input';
 import CustomLabel from '../shared/Label';
@@ -16,26 +16,31 @@ interface CreateUserExperienceProps {
     userName: string;
     onExperienceChange: (experience: UserExperience) => void;
     onStepChange: (nextStep: CreateFormSteps) => void;
+    experience?: UserExperience;
 }
 
 const CreateUserStepExperience = ({
     onExperienceChange,
     onStepChange,
     userName,
+    experience,
 }: CreateUserExperienceProps) => {
     const onStepBack = () => {
         onStepChange(CreateFormSteps.Birthday);
     };
 
-    const [userExperience, setUserExperience] = useState<UserExperience>({
-        title: '',
-        companyName: '',
-        industry: '',
-        employmentType: '',
-        location: '',
-        startDate: new Date(),
-        endDate: new Date(),
-    });
+    const [userExperience, setUserExperience] = useState<UserExperience>(
+        experience || {
+            title: '',
+            companyName: '',
+            industry: '',
+            employmentType: '',
+            location: '',
+            startDate: new Date(),
+            endDate: new Date(),
+            id: '',
+        }
+    );
 
     const onFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -68,9 +73,18 @@ const CreateUserStepExperience = ({
     };
 
     const onNextClick = () => {
-        onExperienceChange(userExperience);
+        onExperienceChange(
+            experience
+                ? userExperience
+                : {
+                      ...userExperience,
+                      id: crypto.randomUUID(),
+                  }
+        );
         onStepChange(CreateFormSteps.ViewExperiences);
     };
+
+    console.log(userExperience);
 
     return (
         <section className='scrollable-container'>

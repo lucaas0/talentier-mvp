@@ -10,11 +10,13 @@ import Image from 'next/image';
 interface CreateUserViewExperiencesProps {
     experiences: UserExperience[];
     onStepChange: (nextStep: CreateFormSteps) => void;
+    onEditExp: (exp: UserExperience) => void;
 }
 
 const CreateUserStepViewExperiences = ({
     experiences,
     onStepChange,
+    onEditExp,
 }: CreateUserViewExperiencesProps) => {
     const onAddExperience = () => {
         onStepChange(CreateFormSteps.Experience);
@@ -32,7 +34,10 @@ const CreateUserStepViewExperiences = ({
             <section className='flex flex-col gap-2 w-full'>
                 {experiences.map((exp) => {
                     return (
-                        <div className='looking-container flex flex-row justify-between items-center p-3 cursor-pointer'>
+                        <div
+                            className='looking-container flex flex-row justify-between items-center p-3 cursor-pointer'
+                            key={exp.id}
+                        >
                             <div className='flex flex-row gap-4'>
                                 <div className=' bg-gray-800 rounded-lg p-3'>
                                     <Image
@@ -47,16 +52,21 @@ const CreateUserStepViewExperiences = ({
                                         {exp.title}
                                     </p>
                                     <p className='text-sm text-gray-500'>
-                                        {exp.location}
+                                        {exp.companyName}
                                     </p>
                                 </div>
                             </div>
-                            <Image
-                                src='/ic-pencil.svg'
-                                alt='Edit'
-                                width={20}
-                                height={20}
-                            />
+                            <button
+                                type='button'
+                                onClick={() => onEditExp(exp)}
+                            >
+                                <Image
+                                    src='/ic-pencil.svg'
+                                    alt='Edit'
+                                    width={20}
+                                    height={20}
+                                />
+                            </button>
                         </div>
                     );
                 })}
@@ -72,7 +82,6 @@ const CreateUserStepViewExperiences = ({
                         width={24}
                         height={24}
                         alt='Add'
-                        style={{ filter: 'invert(100%)' }}
                     />
                 </button>
             </section>

@@ -18,8 +18,13 @@ const CreateUserAccount = () => {
         birthday: new Date(),
         experiences: [],
     });
+
     const [activeStep, setActiveStep] = useState<CreateFormSteps>(
         CreateFormSteps.Email
+    );
+
+    const [editingExp, setEditingExp] = useState<UserExperience | undefined>(
+        undefined
     );
 
     const handleFieldChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,9 +52,23 @@ const CreateUserAccount = () => {
     const handleExperienceChange = (experience: UserExperience) => {
         const copy = { ...userData };
 
-        copy.experiences = [...userData.experiences, experience];
+        if (editingExp) {
+            const expIdx = copy.experiences.findIndex(
+                (exp) => exp.id === experience.id
+            );
+
+            copy.experiences[expIdx] = experience;
+        } else {
+            copy.experiences = [...userData.experiences, experience];
+        }
 
         setUserData({ ...copy });
+        setEditingExp(undefined);
+    };
+
+    const handleEditingExp = (exp: UserExperience) => {
+        setActiveStep(CreateFormSteps.Experience);
+        setEditingExp(exp);
     };
 
     console.log(userData);
@@ -96,12 +115,14 @@ const CreateUserAccount = () => {
                         userName={userData.name}
                         onExperienceChange={handleExperienceChange}
                         onStepChange={handleStepChange}
+                        experience={editingExp}
                     />
                 )}
                 {activeStep === CreateFormSteps.ViewExperiences && (
                     <CreateUserStepViewExperiences
                         experiences={userData.experiences}
                         onStepChange={handleStepChange}
+                        onEditExp={handleEditingExp}
                     />
                 )}
             </motion.main>

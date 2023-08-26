@@ -6,6 +6,7 @@ export interface UserExperience {
     location: string;
     startDate: Date;
     endDate: Date;
+    id: string;
 }
 
 export interface User {
