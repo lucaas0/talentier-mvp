@@ -4,7 +4,7 @@ import CustomInput from '../shared/Input';
 import CustomLabel from '../shared/Label';
 import { NextButton } from '../shared/NextButton';
 import { CreateFormSteps } from '@/utils/constants';
-import { UserExperience } from '@/utils/utils';
+import { UserEducation } from '@/utils/utils';
 import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
@@ -12,30 +12,27 @@ import 'react-datepicker/dist/react-datepicker.css';
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-interface CreateUserExperienceProps {
-    userName: string;
-    onExperienceChange: (experience: UserExperience) => void;
+interface CreateUserEducationProps {
+    onEducationChange: (education: UserEducation) => void;
     onStepChange: (nextStep: CreateFormSteps) => void;
-    experience?: UserExperience;
+    education?: UserEducation;
 }
 
-const CreateUserStepExperience = ({
-    onExperienceChange,
+const CreateUserStepEducation = ({
+    onEducationChange,
     onStepChange,
-    userName,
-    experience,
-}: CreateUserExperienceProps) => {
+    education,
+}: CreateUserEducationProps) => {
     const onStepBack = () => {
-        onStepChange(CreateFormSteps.Birthday);
+        onStepChange(CreateFormSteps.ViewExperiences);
     };
 
-    const [userExperience, setUserExperience] = useState<UserExperience>(
-        experience || {
-            title: '',
-            companyName: '',
-            industry: '',
-            employmentType: '',
-            location: '',
+    const [userEducation, setUserEducation] = useState<UserEducation>(
+        education || {
+            level: '',
+            area: '',
+            organization: '',
+            description: '',
             startDate: new Date(),
             endDate: new Date(),
             id: '',
@@ -47,41 +44,40 @@ const CreateUserStepExperience = ({
 
         const { value, name } = e.currentTarget;
 
-        setUserExperience({
-            ...userExperience,
+        setUserEducation({
+            ...userEducation,
             [name]: value,
         });
     };
 
     const onDateChange = (field: string, value: Date) => {
-        setUserExperience({
-            ...userExperience,
+        setUserEducation({
+            ...userEducation,
             [field]: value,
         });
     };
 
     const isNextDisabled = () => {
         return (
-            !userExperience.title ||
-            !userExperience.companyName ||
-            !userExperience.industry ||
-            !userExperience.employmentType ||
-            !userExperience.location ||
-            !userExperience.startDate ||
-            !userExperience.endDate
+            !userEducation.level ||
+            !userEducation.area ||
+            !userEducation.organization ||
+            !userEducation.description ||
+            !userEducation.startDate ||
+            !userEducation.endDate
         );
     };
 
     const onNextClick = () => {
-        onExperienceChange(
-            experience
-                ? userExperience
+        onEducationChange(
+            education
+                ? userEducation
                 : {
-                      ...userExperience,
+                      ...userEducation,
                       id: crypto.randomUUID(),
                   }
         );
-        onStepChange(CreateFormSteps.ViewExperiences);
+        onStepChange(CreateFormSteps.ViewEducations);
     };
 
     return (
@@ -89,91 +85,61 @@ const CreateUserStepExperience = ({
             <CreateFormHeader onStepBack={onStepBack} />
             <section className='flex flex-col w-full my-8'>
                 <h1 className='color-222 text-xl font-extrabold mr-8'>
-                    Alright {userName.split(' ')[0]}, {`let's setup`}
+                    Education
                 </h1>
                 <h2 className='color-667085 text-sm font-medium'>
                     {`Don't worry you can always edit this later`}
                 </h2>
             </section>
             <section className='flex flex-col gap-2 w-full my-2'>
-                <CustomLabel text='Title' />
+                <CustomLabel text='Level' />
                 <CustomInput
                     type='text'
-                    placeholder='Your last job title'
+                    placeholder='Bachelors degree, Masters degree, Doctorate/PhD...'
                     hasError={
-                        userExperience.title.length === 0
+                        userEducation.level.length === 0
                             ? false
-                            : userExperience.title.length < 5
+                            : userEducation.level.length < 5
                     }
-                    value={userExperience.title}
+                    value={userEducation.level}
                     onInputChange={onFieldChange}
-                    name='title'
+                    name='level'
                 />
             </section>
             <section className='flex flex-col gap-2 w-full my-2'>
-                <CustomLabel text='Company Name' />
+                <CustomLabel text='Area' />
                 <CustomInput
                     type='text'
-                    placeholder='Company name'
+                    placeholder='Design, Engineering...'
                     hasError={
-                        userExperience.companyName.length === 0
+                        userEducation.area.length === 0
                             ? false
-                            : userExperience.companyName.length < 3
+                            : userEducation.area.length < 3
                     }
-                    value={userExperience.companyName}
+                    value={userEducation.area}
                     onInputChange={onFieldChange}
-                    name='companyName'
+                    name='area'
                 />
             </section>
             <section className='flex flex-col gap-2 w-full my-2'>
-                <CustomLabel text='Industry' />
+                <CustomLabel text='Organization' />
                 <CustomInput
                     type='text'
-                    placeholder='Industry'
+                    placeholder='Name of the organization'
                     hasError={
-                        userExperience.industry.length === 0
+                        userEducation.organization.length === 0
                             ? false
-                            : userExperience.industry.length < 3
+                            : userEducation.organization.length < 3
                     }
-                    value={userExperience.industry}
+                    value={userEducation.organization}
                     onInputChange={onFieldChange}
-                    name='industry'
-                />
-            </section>
-            <section className='flex flex-col gap-2 w-full my-2'>
-                <CustomLabel text='Employment Type' />
-                <CustomInput
-                    type='text'
-                    placeholder='Full-Time, Part-Time, etc..'
-                    hasError={
-                        userExperience.employmentType.length === 0
-                            ? false
-                            : userExperience.employmentType.length < 3
-                    }
-                    value={userExperience.employmentType}
-                    onInputChange={onFieldChange}
-                    name='employmentType'
-                />
-            </section>
-            <section className='flex flex-col gap-2 w-full my-2'>
-                <CustomLabel text='Location' />
-                <CustomInput
-                    type='text'
-                    placeholder='Paris, Lisbon, Remote...'
-                    hasError={
-                        userExperience.location.length === 0
-                            ? false
-                            : userExperience.location.length < 3
-                    }
-                    value={userExperience.location}
-                    onInputChange={onFieldChange}
-                    name='location'
+                    name='organization'
                 />
             </section>
             <section className='flex flex-col gap-2 w-full my-2'>
                 <CustomLabel text='Start Date' />
                 <DatePicker
-                    selected={userExperience.startDate}
+                    selected={userEducation.startDate}
                     onChange={(date: Date) => onDateChange('startDate', date)}
                     className='color-667085 text-sm w-full bg-F2F4F7 rounded-lg p-3 outline-none'
                     dateFormat='dd/MM/yyyy'
@@ -186,7 +152,7 @@ const CreateUserStepExperience = ({
             <section className='flex flex-col gap-2 w-full my-2'>
                 <CustomLabel text='End Date' />
                 <DatePicker
-                    selected={userExperience.endDate}
+                    selected={userEducation.endDate}
                     onChange={(date: Date) => onDateChange('endDate', date)}
                     className='color-667085 text-sm w-full bg-F2F4F7 rounded-lg p-3 outline-none'
                     dateFormat='dd/MM/yyyy'
@@ -194,6 +160,21 @@ const CreateUserStepExperience = ({
                     showMonthDropdown
                     showYearDropdown
                     dropdownMode='select'
+                />
+            </section>
+            <section className='flex flex-col gap-2 w-full my-2'>
+                <CustomLabel text='Description' />
+                <CustomInput
+                    type='text'
+                    placeholder='Main subjects,, etc...'
+                    hasError={
+                        userEducation.description.length === 0
+                            ? false
+                            : userEducation.description.length < 3
+                    }
+                    value={userEducation.description}
+                    onInputChange={onFieldChange}
+                    name='description'
                 />
             </section>
             <NextButton
@@ -205,4 +186,4 @@ const CreateUserStepExperience = ({
     );
 };
 
-export default CreateUserStepExperience;
+export default CreateUserStepEducation;

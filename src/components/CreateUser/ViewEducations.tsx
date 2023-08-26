@@ -4,39 +4,39 @@ import CustomInput from '../shared/Input';
 import CustomLabel from '../shared/Label';
 import { NextButton } from '../shared/NextButton';
 import { CreateFormSteps } from '@/utils/constants';
-import { UserExperience } from '@/utils/utils';
+import { UserEducation } from '@/utils/utils';
 import Image from 'next/image';
 
-interface CreateUserViewExperiencesProps {
-    experiences: UserExperience[];
+interface CreateUserViewEducationsProps {
+    educations: UserEducation[];
     onStepChange: (nextStep: CreateFormSteps) => void;
-    onEditExp: (exp: UserExperience) => void;
+    onEdit: (education: UserEducation) => void;
 }
 
-const CreateUserStepViewExperiences = ({
-    experiences,
+const CreateUserStepViewEducations = ({
+    educations,
     onStepChange,
-    onEditExp,
-}: CreateUserViewExperiencesProps) => {
-    const onAddExperience = () => {
-        onStepChange(CreateFormSteps.Experience);
+    onEdit,
+}: CreateUserViewEducationsProps) => {
+    const onAddEducation = () => {
+        onStepChange(CreateFormSteps.Education);
     };
     return (
         <React.Fragment>
             <section className='flex flex-col w-full my-8'>
                 <h1 className='color-222 text-xl font-extrabold mr-8'>
-                    Your Experiences
+                    Your Education
                 </h1>
                 <h2 className='color-667085 text-sm font-medium'>
                     {`Don't worry you can always edit this later`}
                 </h2>
             </section>
             <section className='flex flex-col gap-2 w-full'>
-                {experiences.map((exp) => {
+                {educations.map((education) => {
                     return (
                         <div
                             className='looking-container flex flex-row justify-between items-center p-3 cursor-pointer'
-                            key={exp.id}
+                            key={education.id}
                         >
                             <div className='flex flex-row gap-4'>
                                 <div className=' bg-gray-800 rounded-lg p-3'>
@@ -49,16 +49,16 @@ const CreateUserStepViewExperiences = ({
                                 </div>
                                 <div>
                                     <p className='text-base font-bold text-gray-800'>
-                                        {exp.title}
+                                        {`${education.level} - ${education.area}`}
                                     </p>
                                     <p className='text-sm text-gray-500'>
-                                        {exp.companyName}
+                                        {education.organization}
                                     </p>
                                 </div>
                             </div>
                             <button
                                 type='button'
-                                onClick={() => onEditExp(exp)}
+                                onClick={() => onEdit(education)}
                             >
                                 <Image
                                     src='/ic-pencil.svg'
@@ -75,7 +75,7 @@ const CreateUserStepViewExperiences = ({
             <section className='w-full flex justify-center p-12'>
                 <button
                     className='bg-7b61ff rounded-full p-3'
-                    onClick={onAddExperience}
+                    onClick={onAddEducation}
                 >
                     <Image
                         src='/ic-plus.svg'
@@ -88,10 +88,10 @@ const CreateUserStepViewExperiences = ({
             <NextButton
                 disabled={false}
                 text='Next'
-                callback={() => onStepChange(CreateFormSteps.Education)}
+                callback={() => onStepChange(CreateFormSteps.Skills)}
             />
         </React.Fragment>
     );
 };
 
-export default CreateUserStepViewExperiences;
+export default CreateUserStepViewEducations;

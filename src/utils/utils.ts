@@ -9,10 +9,31 @@ export interface UserExperience {
     id: string;
 }
 
+export interface UserEducation {
+    level: string;
+    area: string;
+    organization: string;
+    startDate: Date;
+    endDate: Date;
+    description: string;
+    id: string;
+}
+
+export interface JobPreferences {
+    [key: string]: string[];
+    location: string[];
+    employmentType: string[];
+    role: string[];
+}
+
 export interface User {
     email: string;
     password: string;
     name: string;
     birthday: Date;
     experiences: UserExperience[];
+    educations: UserEducation[];
+    skills: string[];
+    jobPreferences: JobPreferences;
+    photoUrl: string;
 }
