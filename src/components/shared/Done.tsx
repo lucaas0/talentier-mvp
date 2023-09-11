@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Lottie from 'react-lottie';
 import checkAnimation from '../../lotties/check-animation.json';
 

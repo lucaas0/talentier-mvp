@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import CreateFormHeader from '../shared/CreateFormHeader';
 import CustomInput from '../shared/Input';
 import CustomLabel from '../shared/Label';
-import { NextButton } from '../shared/NextButton';
+import { CustomButton } from '../shared/NextButton';
 import { CreateFormSteps } from '@/utils/constants';
 import { UserExperience } from '@/utils/utils';
 import DatePicker from 'react-datepicker';
@@ -38,7 +38,7 @@ const CreateUserStepExperience = ({
             location: '',
             startDate: new Date(),
             endDate: new Date(),
-            id: '',
+            uuid: '',
         }
     );
 
@@ -78,7 +78,7 @@ const CreateUserStepExperience = ({
                 ? userExperience
                 : {
                       ...userExperience,
-                      id: crypto.randomUUID(),
+                      uuid: crypto.randomUUID(),
                   }
         );
         onStepChange(CreateFormSteps.ViewExperiences);
@@ -196,7 +196,7 @@ const CreateUserStepExperience = ({
                     dropdownMode='select'
                 />
             </section>
-            <NextButton
+            <CustomButton
                 disabled={isNextDisabled()}
                 text='Next'
                 callback={onNextClick}

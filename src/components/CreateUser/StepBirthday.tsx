@@ -1,8 +1,7 @@
 import React from 'react';
 import CreateFormHeader from '../shared/CreateFormHeader';
-import CustomInput from '../shared/Input';
 import CustomLabel from '../shared/Label';
-import { NextButton } from '../shared/NextButton';
+import { CustomButton } from '../shared/NextButton';
 import { CreateFormSteps } from '@/utils/constants';
 import DatePicker from 'react-datepicker';
 
@@ -49,7 +48,7 @@ const CreateUserStepBirthday = ({
                     dropdownMode='select'
                 />
             </section>
-            <NextButton
+            <CustomButton
                 disabled={!birthday}
                 text='Next'
                 callback={() => onStepChange(CreateFormSteps.Experience)}

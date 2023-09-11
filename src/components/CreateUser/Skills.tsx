@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CreateFormHeader from '../shared/CreateFormHeader';
-import { NextButton } from '../shared/NextButton';
+import { CustomButton } from '../shared/NextButton';
 import { CreateFormSteps, skills } from '@/utils/constants';
 
 import { ChipButton } from '../shared/Chip';
@@ -65,7 +65,7 @@ const CreateUserStepSkills = ({
                     );
                 })}
             </section>
-            <NextButton
+            <CustomButton
                 disabled={isNextDisabled()}
                 text='Next'
                 callback={onNextClick}

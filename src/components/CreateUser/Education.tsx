@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import CreateFormHeader from '../shared/CreateFormHeader';
 import CustomInput from '../shared/Input';
 import CustomLabel from '../shared/Label';
-import { NextButton } from '../shared/NextButton';
+import { CustomButton } from '../shared/NextButton';
 import { CreateFormSteps } from '@/utils/constants';
 import { UserEducation } from '@/utils/utils';
 import DatePicker from 'react-datepicker';
@@ -35,7 +35,7 @@ const CreateUserStepEducation = ({
             description: '',
             startDate: new Date(),
             endDate: new Date(),
-            id: '',
+            uuid: '',
         }
     );
 
@@ -74,7 +74,7 @@ const CreateUserStepEducation = ({
                 ? userEducation
                 : {
                       ...userEducation,
-                      id: crypto.randomUUID(),
+                      uuid: crypto.randomUUID(),
                   }
         );
         onStepChange(CreateFormSteps.ViewEducations);
@@ -177,7 +177,7 @@ const CreateUserStepEducation = ({
                     name='description'
                 />
             </section>
-            <NextButton
+            <CustomButton
                 disabled={isNextDisabled()}
                 text='Next'
                 callback={onNextClick}

@@ -49,6 +49,10 @@ body {
     color: #222;
 }
 
+.color-5E6272 {
+    color: #5e6272;
+}
+
 .color-475467 {
     color: #475467;
 }
@@ -90,6 +94,10 @@ body {
     background-color: #101828;
     border-radius: 99px;
     padding: 13px;
+}
+
+.color-error {
+    color: #ee3e3e;
 }
 
 .chip-button {
@@ -213,4 +221,13 @@ body {
     justify-content: center;
     transition: all 0.2s;
     z-index: 0;
+}
+
+/* Change the white to any color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #f2f4f7 inset !important;
+    -webkit-text-fill-color: #667085;
 }

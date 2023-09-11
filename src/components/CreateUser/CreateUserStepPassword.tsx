@@ -2,7 +2,7 @@ import React from 'react';
 import CreateFormHeader from '../shared/CreateFormHeader';
 import CustomInput from '../shared/Input';
 import CustomLabel from '../shared/Label';
-import { NextButton } from '../shared/NextButton';
+import { CustomButton } from '../shared/NextButton';
 import { isStrongPassword } from '@/utils/validations';
 import { CreateFormSteps } from '@/utils/constants';
 
@@ -55,7 +55,7 @@ const CreateUserStepPassword = ({
                     lowercase letters, one digit, and one special character.
                 </h2>
             </section>
-            <NextButton
+            <CustomButton
                 disabled={password === '' || !isStrongPassword(password)}
                 text='Next'
                 callback={() => onStepChange(CreateFormSteps.Name)}

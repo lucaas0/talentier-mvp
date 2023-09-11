@@ -6,7 +6,7 @@ export interface UserExperience {
     location: string;
     startDate: Date;
     endDate: Date;
-    id: string;
+    uuid: string;
 }
 
 export interface UserEducation {
@@ -16,7 +16,7 @@ export interface UserEducation {
     startDate: Date;
     endDate: Date;
     description: string;
-    id: string;
+    uuid: string;
 }
 
 export interface JobPreferences {

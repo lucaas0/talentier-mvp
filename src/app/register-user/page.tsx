@@ -20,6 +20,7 @@ import CreateUserStepSkills from '@/components/CreateUser/Skills';
 import CreateUserStepJobPreferences from '@/components/CreateUser/JobPreferences';
 import CreateUserStepProfilePhoto from '@/components/CreateUser/ProfilePhoto';
 import Done from '@/components/shared/Done';
+import { createUserAction } from '../_actions';
 
 const CreateUserAccount = () => {
     const [userData, setUserData] = useState<User>({
@@ -65,6 +66,13 @@ const CreateUserAccount = () => {
         setActiveStep(newStep);
     };
 
+    const handleEmailChange = (email: string) => {
+        setUserData({
+            ...userData,
+            email,
+        });
+    };
+
     const handleBirthdateChange = (newBirthDate: Date) => {
         setUserData({
             ...userData,
@@ -77,7 +85,7 @@ const CreateUserAccount = () => {
 
         if (editingExp) {
             const expIdx = copy.experiences.findIndex(
-                (exp) => exp.id === experience.id
+                (exp) => exp.uuid === experience.uuid
             );
 
             copy.experiences[expIdx] = experience;
@@ -104,7 +112,7 @@ const CreateUserAccount = () => {
 
         if (editingEducation) {
             const educationIdx = copy.educations.findIndex(
-                (e) => e.id === education.id
+                (e) => e.uuid === education.uuid
             );
 
             copy.educations[educationIdx] = education;
@@ -132,6 +140,14 @@ const CreateUserAccount = () => {
         setUserData({ ...copy });
     };
 
+    const handleDone = async () => {
+        const createdUser = await createUserAction(userData);
+
+        if (createdUser) {
+            setActiveStep(CreateFormSteps.Done);
+        }
+    };
+
     return (
         <AnimatePresence>
             <motion.main
@@ -143,8 +159,7 @@ const CreateUserAccount = () => {
             >
                 {activeStep === CreateFormSteps.Email && (
                     <CreateUserStepEmail
-                        email={userData.email}
-                        onEmailChange={handleFieldChange}
+                        onEmailChange={handleEmailChange}
                         onStepChange={handleStepChange}
                     />
                 )}
@@ -222,6 +237,7 @@ const CreateUserAccount = () => {
                                 photoUrl,
                             })
                         }
+                        onDone={handleDone}
                     />
                 )}
 

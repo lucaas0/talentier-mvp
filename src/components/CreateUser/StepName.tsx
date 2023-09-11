@@ -2,7 +2,7 @@ import React from 'react';
 import CreateFormHeader from '../shared/CreateFormHeader';
 import CustomInput from '../shared/Input';
 import CustomLabel from '../shared/Label';
-import { NextButton } from '../shared/NextButton';
+import { CustomButton } from '../shared/NextButton';
 import { CreateFormSteps } from '@/utils/constants';
 
 interface CreateUserNameProps {
@@ -42,7 +42,7 @@ const CreateUserStepName = ({
                     hasError={name.length === 0 ? false : name.length < 3}
                 />
             </section>
-            <NextButton
+            <CustomButton
                 disabled={name.length < 3}
                 text='Next'
                 callback={() => onStepChange(CreateFormSteps.Birthday)}

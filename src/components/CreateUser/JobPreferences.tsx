@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import CreateFormHeader from '../shared/CreateFormHeader';
-import { NextButton } from '../shared/NextButton';
+import { CustomButton } from '../shared/NextButton';
 import {
     CreateFormSteps,
     jobRoles,
@@ -129,7 +129,7 @@ const CreateUserStepJobPreferences = ({
                     );
                 })}
             </section>
-            <NextButton
+            <CustomButton
                 disabled={isNextDisabled()}
                 text='Next'
                 callback={onNextClick}

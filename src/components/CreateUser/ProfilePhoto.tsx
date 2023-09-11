@@ -1,25 +1,19 @@
 import React, { useState } from 'react';
 import CreateFormHeader from '../shared/CreateFormHeader';
-import { NextButton } from '../shared/NextButton';
-import {
-    CreateFormSteps,
-    jobRoles,
-    jobLocations,
-    employmentTypes,
-} from '@/utils/constants';
-
-import { ChipButton } from '../shared/Chip';
-import { JobPreferences } from '@/utils/utils';
+import { CustomButton } from '../shared/NextButton';
+import { CreateFormSteps } from '@/utils/constants';
 import Image from 'next/image';
 
 interface CreateUserPhotoProps {
     onPhotoChange: (photoUrl: string) => void;
     onStepChange: (nextStep: CreateFormSteps) => void;
+    onDone: () => void;
 }
 
 const CreateUserStepProfilePhoto = ({
     onPhotoChange,
     onStepChange,
+    onDone,
 }: CreateUserPhotoProps) => {
     const onStepBack = () => {
         onStepChange(CreateFormSteps.Skills);
@@ -29,7 +23,7 @@ const CreateUserStepProfilePhoto = ({
 
     const onNextClick = () => {
         onPhotoChange(profilePhoto);
-        onStepChange(CreateFormSteps.Done);
+        onDone();
     };
 
     // On file select (from the pop up)
@@ -88,7 +82,7 @@ const CreateUserStepProfilePhoto = ({
                 </div>
             </section>
 
-            <NextButton disabled={false} text='Next' callback={onNextClick} />
+            <CustomButton disabled={false} text='Next' callback={onNextClick} />
         </section>
     );
 };

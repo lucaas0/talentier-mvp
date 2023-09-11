@@ -1,8 +1,5 @@
 import React from 'react';
-import CreateFormHeader from '../shared/CreateFormHeader';
-import CustomInput from '../shared/Input';
-import CustomLabel from '../shared/Label';
-import { NextButton } from '../shared/NextButton';
+import { CustomButton } from '../shared/NextButton';
 import { CreateFormSteps } from '@/utils/constants';
 import { UserEducation } from '@/utils/utils';
 import Image from 'next/image';
@@ -36,7 +33,7 @@ const CreateUserStepViewEducations = ({
                     return (
                         <div
                             className='looking-container flex flex-row justify-between items-center p-3 cursor-pointer'
-                            key={education.id}
+                            key={education.uuid}
                         >
                             <div className='flex flex-row gap-4'>
                                 <div className=' bg-gray-800 rounded-lg p-3'>
@@ -85,7 +82,7 @@ const CreateUserStepViewEducations = ({
                     />
                 </button>
             </section>
-            <NextButton
+            <CustomButton
                 disabled={false}
                 text='Next'
                 callback={() => onStepChange(CreateFormSteps.Skills)}
