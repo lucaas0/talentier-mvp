@@ -241,7 +241,9 @@ const CreateUserAccount = () => {
                     />
                 )}
 
-                {activeStep === CreateFormSteps.Done && <Done />}
+                {activeStep === CreateFormSteps.Done && (
+                    <Done name={userData.name} email={userData.email} />
+                )}
             </motion.main>
         </AnimatePresence>
     );

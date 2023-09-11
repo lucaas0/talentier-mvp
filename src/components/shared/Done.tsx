@@ -1,7 +1,32 @@
+import { useEffect } from 'react';
 import Lottie from 'react-lottie';
 import checkAnimation from '../../lotties/check-animation.json';
+import { useRouter } from 'next/navigation';
 
-const Done = () => {
+interface DoneProps {
+    name: string;
+    email: string;
+}
+
+const Done = ({ name, email }: DoneProps) => {
+    const router = useRouter();
+
+    useEffect(() => {
+        const handleReRoute = () => {
+            const userStorage = localStorage.getItem('user');
+
+            if (userStorage) {
+                localStorage.getItem('user');
+            }
+            setTimeout(() => {
+                localStorage.setItem('user', JSON.stringify({ email, name }));
+                router.push('/dashboard');
+            }, 3000);
+        };
+
+        handleReRoute();
+    }, []);
+
     const defaultOptions = {
         loop: true,
         autoplay: true,

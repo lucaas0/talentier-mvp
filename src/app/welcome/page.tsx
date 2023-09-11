@@ -5,8 +5,20 @@ import { Carousel } from 'react-responsive-carousel';
 import Image from 'next/image';
 import { CreateAccountButton } from '@/components/welcome/CreateBtn';
 import { LoginSection } from '@/components/welcome/LoginSection';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const Welcome = () => {
+    const router = useRouter();
+
+    useEffect(() => {
+        const userStorage = localStorage.getItem('user');
+
+        if (userStorage) {
+            router.push('/dashboard');
+        }
+    }, []);
+
     const renderSlide1 = () => {
         return (
             <motion.main
