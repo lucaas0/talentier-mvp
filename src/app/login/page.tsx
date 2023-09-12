@@ -7,6 +7,7 @@ import CreateFormHeader from '@/components/shared/CreateFormHeader';
 import CustomInput from '@/components/shared/Input';
 import { CustomButton } from '@/components/shared/NextButton';
 import Spinner from '@/components/shared/Spinner';
+import { signIn } from 'next-auth/react';
 
 interface FormElements extends HTMLFormElement {
     email: HTMLInputElement;
@@ -44,22 +45,24 @@ const Login = () => {
     const handleLoginSubmit = async (event: React.FormEvent<FormElements>) => {
         event.preventDefault();
 
-        if (isButtonDisabled()) {
-            return;
-        }
-        const email = event.currentTarget.email.value;
-        const password = event.currentTarget.password.value;
+        try {
+            setIsFetching(true);
 
-        setIsFetching(true);
+            const res = await signIn('credentials', {
+                redirect: false,
+                email: formFields.email,
+                password: formFields.password,
+                callbackUrl: '/dashboard',
+            });
 
-        const loggedInUser = await loginUserAction(email, password);
+            setIsFetching(false);
 
-        setIsFetching(false);
-
-        if (loggedInUser) {
-            localStorage.setItem('user', JSON.stringify(loggedInUser));
-            router.push('/dashboard');
-        } else {
+            if (res?.error) {
+                setError(true);
+            } else {
+                router.push('/dashboard');
+            }
+        } catch (error) {
             setError(true);
         }
     };
@@ -100,7 +103,6 @@ const Login = () => {
                     onSubmit={
                         isButtonDisabled() ? preventForm : handleLoginSubmit
                     }
-                    method='POST'
                     className='flex flex-col gap-8 items-center w-full'
                 >
                     <CustomInput

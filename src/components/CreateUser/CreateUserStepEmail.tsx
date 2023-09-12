@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { isValidEmail } from '@/utils/validations';
 import { CreateFormSteps } from '@/utils/constants';
 import { getUserByEmailAction } from '@/app/_actions';
+import Spinner from '../shared/Spinner';
 
 interface CreateUserEmailProps {
     onEmailChange: (email: string) => void;
@@ -21,6 +22,7 @@ const CreateUserStepEmail = ({
 
     const [userEmail, setUserEmail] = useState('');
     const [emailExists, setEmailExists] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const onStepOneBack = () => {
         router.push('/create-account');
@@ -37,8 +39,9 @@ const CreateUserStepEmail = ({
     };
 
     const onNextEmail = async () => {
+        setIsLoading(true);
         const emailExists = await getUserByEmailAction(userEmail);
-
+        setIsLoading(false);
         if (!emailExists) {
             onStepChange(CreateFormSteps.Password);
             onEmailChange(userEmail);
@@ -49,6 +52,7 @@ const CreateUserStepEmail = ({
 
     return (
         <React.Fragment>
+            {isLoading && <Spinner />}
             <CreateFormHeader onStepBack={onStepOneBack} />
             <section className='flex flex-col w-full my-8'>
                 <h1 className='color-222 text-xl font-extrabold mr-8'>

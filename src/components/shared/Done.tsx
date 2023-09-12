@@ -2,26 +2,31 @@ import { useEffect } from 'react';
 import Lottie from 'react-lottie';
 import checkAnimation from '../../lotties/check-animation.json';
 import { useRouter } from 'next/navigation';
-
+import { signIn } from 'next-auth/react';
 interface DoneProps {
-    name: string;
+    password: string;
     email: string;
 }
 
-const Done = ({ name, email }: DoneProps) => {
+const Done = ({ password, email }: DoneProps) => {
     const router = useRouter();
 
     useEffect(() => {
-        const handleReRoute = () => {
-            const userStorage = localStorage.getItem('user');
+        const handleReRoute = async () => {
+            setTimeout(async () => {
+                const res = await signIn('credentials', {
+                    redirect: false,
+                    email: email,
+                    password: password,
+                    callbackUrl: '/dashboard',
+                });
 
-            if (userStorage) {
-                localStorage.getItem('user');
-            }
-            setTimeout(() => {
-                localStorage.setItem('user', JSON.stringify({ email, name }));
-                router.push('/dashboard');
-            }, 3000);
+                if (res?.error) {
+                    router.push('/login');
+                } else {
+                    router.push('/dashboard');
+                }
+            }, 1000);
         };
 
         handleReRoute();

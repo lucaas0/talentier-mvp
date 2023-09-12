@@ -21,6 +21,7 @@ import CreateUserStepJobPreferences from '@/components/CreateUser/JobPreferences
 import CreateUserStepProfilePhoto from '@/components/CreateUser/ProfilePhoto';
 import Done from '@/components/shared/Done';
 import { createUserAction } from '../_actions';
+import Spinner from '@/components/shared/Spinner';
 
 const CreateUserAccount = () => {
     const [userData, setUserData] = useState<User>({
@@ -38,6 +39,8 @@ const CreateUserAccount = () => {
         },
         photoUrl: '',
     });
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const [activeStep, setActiveStep] = useState<CreateFormSteps>(
         CreateFormSteps.Email
@@ -141,8 +144,9 @@ const CreateUserAccount = () => {
     };
 
     const handleDone = async () => {
+        setIsLoading(true);
         const createdUser = await createUserAction(userData);
-
+        setIsLoading(false);
         if (createdUser) {
             setActiveStep(CreateFormSteps.Done);
         }
@@ -157,6 +161,7 @@ const CreateUserAccount = () => {
                 exit={{ opacity: 1 }}
                 transition={{ type: 'tween', duration: 1 }}
             >
+                {isLoading && <Spinner />}
                 {activeStep === CreateFormSteps.Email && (
                     <CreateUserStepEmail
                         onEmailChange={handleEmailChange}
@@ -242,7 +247,7 @@ const CreateUserAccount = () => {
                 )}
 
                 {activeStep === CreateFormSteps.Done && (
-                    <Done name={userData.name} email={userData.email} />
+                    <Done password={userData.password} email={userData.email} />
                 )}
             </motion.main>
         </AnimatePresence>

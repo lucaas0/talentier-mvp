@@ -1,33 +1,37 @@
 'use client';
 
 import { CustomButton } from '@/components/shared/NextButton';
-import withAuth from '@/hoc/withAuth';
-import { useRouter } from 'next/navigation';
+import { redirect } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
+import Spinner from '@/components/shared/Spinner';
 
-const Dashboard = (props: any) => {
-    const { user } = props;
-
-    const router = useRouter();
+export default function Dashboard() {
+    const { data: session } = useSession({
+        required: true,
+        onUnauthenticated() {
+            redirect('/api/auth/signin?callbackUrl=/dashboard');
+        },
+    });
 
     const handleLogout = () => {
-        localStorage.removeItem('user');
-        router.push('/login');
+        signOut({
+            callbackUrl: '/welcome',
+        });
     };
 
     return (
-        user && (
-            <div className='flex flex-col w-full h-full max-w-md justify-center p-4'>
+        <div className='flex flex-col w-full h-full max-w-md justify-center p-4'>
+            {!session && <Spinner />}
+            {session && (
                 <section className='flex flex-col items-center justify-center'>
-                    Welcome, {user.name}
+                    Welcome {session?.user?.name}
                     <CustomButton
                         callback={handleLogout}
                         disabled={false}
                         text='Logout'
                     />
                 </section>
-            </div>
-        )
+            )}
+        </div>
     );
-};
-
-export default withAuth(Dashboard);
+}

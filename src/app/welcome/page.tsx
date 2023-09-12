@@ -7,17 +7,20 @@ import { CreateAccountButton } from '@/components/welcome/CreateBtn';
 import { LoginSection } from '@/components/welcome/LoginSection';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useSession, signOut } from 'next-auth/react';
 
 const Welcome = () => {
     const router = useRouter();
 
-    useEffect(() => {
-        const userStorage = localStorage.getItem('user');
+    const { data: session } = useSession({
+        required: false,
+    });
 
-        if (userStorage) {
+    useEffect(() => {
+        if (session) {
             router.push('/dashboard');
         }
-    }, []);
+    }, [session]);
 
     const renderSlide1 = () => {
         return (
